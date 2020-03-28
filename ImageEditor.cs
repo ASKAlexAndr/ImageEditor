@@ -210,5 +210,17 @@ namespace ImageEditor
         {
             this.UpdateImageSize(Decimal.ToInt32(this.imageWidth.Value), Decimal.ToInt32(this.imageHeight.Value));
         }
+
+        private void AddNoize_Click(object sender, EventArgs e)
+        {
+            int power = Decimal.ToInt32(this.noisePower.Value);
+            Bitmap copy = new Bitmap(this.imageBox.Image);
+            Mat imageMat = BitmapConverter.ToMat(copy);
+            Mat mGaussianNoise = new Mat(imageMat.Size(), MatType.CV_8UC4);
+            Scalar stddev = new Scalar(power, power, power);
+            Cv2.Randn(mGaussianNoise, 0, stddev);
+            imageMat += mGaussianNoise;
+            this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
+        }
     }
 }

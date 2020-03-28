@@ -47,12 +47,17 @@
             this.imageHeight = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.AddNoize = new System.Windows.Forms.Button();
+            this.noisePower = new System.Windows.Forms.NumericUpDown();
+            this.HistogramBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).BeginInit();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noisePower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HistogramBox)).BeginInit();
             this.SuspendLayout();
             // 
             // OpenButton
@@ -307,11 +312,39 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Ширина";
             // 
+            // AddNoize
+            // 
+            this.AddNoize.Location = new System.Drawing.Point(105, 391);
+            this.AddNoize.Name = "AddNoize";
+            this.AddNoize.Size = new System.Drawing.Size(127, 22);
+            this.AddNoize.TabIndex = 19;
+            this.AddNoize.Text = "Шум";
+            this.AddNoize.UseVisualStyleBackColor = true;
+            this.AddNoize.Click += new System.EventHandler(this.AddNoize_Click);
+            // 
+            // noisePower
+            // 
+            this.noisePower.Location = new System.Drawing.Point(9, 392);
+            this.noisePower.Name = "noisePower";
+            this.noisePower.Size = new System.Drawing.Size(90, 20);
+            this.noisePower.TabIndex = 20;
+            // 
+            // HistogramBox
+            // 
+            this.HistogramBox.Location = new System.Drawing.Point(12, 435);
+            this.HistogramBox.Name = "HistogramBox";
+            this.HistogramBox.Size = new System.Drawing.Size(220, 161);
+            this.HistogramBox.TabIndex = 21;
+            this.HistogramBox.TabStop = false;
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 624);
+            this.Controls.Add(this.HistogramBox);
+            this.Controls.Add(this.noisePower);
+            this.Controls.Add(this.AddNoize);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.imageHeight);
@@ -340,6 +373,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noisePower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HistogramBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +400,9 @@
         private System.Windows.Forms.NumericUpDown imageHeight;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button AddNoize;
+        private System.Windows.Forms.NumericUpDown noisePower;
+        private System.Windows.Forms.PictureBox HistogramBox;
     }
 }
 
