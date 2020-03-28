@@ -50,6 +50,7 @@
             this.AddNoize = new System.Windows.Forms.Button();
             this.noisePower = new System.Windows.Forms.NumericUpDown();
             this.HistogramBox = new System.Windows.Forms.PictureBox();
+            this.CalcHistButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).BeginInit();
             this.imagePanel.SuspendLayout();
@@ -331,17 +332,28 @@
             // 
             // HistogramBox
             // 
-            this.HistogramBox.Location = new System.Drawing.Point(12, 435);
+            this.HistogramBox.Location = new System.Drawing.Point(9, 450);
             this.HistogramBox.Name = "HistogramBox";
-            this.HistogramBox.Size = new System.Drawing.Size(220, 161);
+            this.HistogramBox.Size = new System.Drawing.Size(223, 146);
             this.HistogramBox.TabIndex = 21;
             this.HistogramBox.TabStop = false;
+            // 
+            // CalcHistButton
+            // 
+            this.CalcHistButton.Location = new System.Drawing.Point(12, 421);
+            this.CalcHistButton.Name = "CalcHistButton";
+            this.CalcHistButton.Size = new System.Drawing.Size(220, 23);
+            this.CalcHistButton.TabIndex = 22;
+            this.CalcHistButton.Text = "Гистограмма";
+            this.CalcHistButton.UseVisualStyleBackColor = true;
+            this.CalcHistButton.Click += new System.EventHandler(this.CalcHistButton_Click);
             // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 624);
+            this.Controls.Add(this.CalcHistButton);
             this.Controls.Add(this.HistogramBox);
             this.Controls.Add(this.noisePower);
             this.Controls.Add(this.AddNoize);
@@ -403,6 +415,7 @@
         private System.Windows.Forms.Button AddNoize;
         private System.Windows.Forms.NumericUpDown noisePower;
         private System.Windows.Forms.PictureBox HistogramBox;
+        private System.Windows.Forms.Button CalcHistButton;
     }
 }
 

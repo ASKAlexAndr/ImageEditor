@@ -222,5 +222,79 @@ namespace ImageEditor
             imageMat += mGaussianNoise;
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
         }
+
+        private void CalcHistButton_Click(object sender, EventArgs e)
+        {
+            int histSize = 128;
+            int[] dimensions = { histSize };
+            Rangef[] ranges = { new Rangef(0, histSize) };
+            Mat[] mv;
+            Bitmap img = new Bitmap(this.imageBox.Image);
+            Mat imageMat = BitmapConverter.ToMat(img);
+
+            int Width = this.HistogramBox.Width, Height = this.HistogramBox.Height;
+            Mat render = new Mat(new OpenCvSharp.Size(Width, Height), MatType.CV_8U, Scalar.All(0));
+
+            Cv2.Split(imageMat, out mv);
+            Mat HistR = new Mat();
+            Mat HistG = new Mat();
+            Mat HistB = new Mat();
+            Cv2.CalcHist(
+                new Mat[] {mv[2]},
+                new int[] {0},
+                null,
+                HistR,
+                1,
+                dimensions,
+                ranges
+                );
+            Cv2.CalcHist(
+              new Mat[] { mv[1] },
+              new int[] { 0 },
+              null,
+              HistG,
+              1,
+              dimensions,
+              ranges
+              );
+            Cv2.CalcHist(
+              new Mat[] { mv[0] },
+              new int[] { 0 },
+              null,
+              HistB,
+              1,
+              dimensions,
+              ranges
+              );
+            Cv2.Normalize(HistR, HistR, 0, 255, NormTypes.MinMax);
+            Cv2.Normalize(HistG, HistG, 0, 255, NormTypes.MinMax);
+            Cv2.Normalize(HistB, HistB, 0, 255, NormTypes.MinMax);
+            int x1, y1;
+            int x2, y2;
+            int ratio = (int)Math.Round((double)Width / histSize);
+            Cv2.CvtColor(render, render, ColorConversionCodes.GRAY2RGB);
+            Scalar color = new Scalar(255,0,0);
+            for (int i = 1; i < histSize; i++)
+            {
+                x1 = ratio * (i - 1);
+                x2 = ratio * (i);
+                // Red
+                y1 = Height - (int)Math.Round(HistR.At<float>(i - 1));
+                y2 = Height - (int)Math.Round(HistR.At<float>(i));
+                color = new Scalar(0, 0, 255);
+                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
+                // Blue
+                y1 = Height - (int)Math.Round(HistB.At<float>(i - 1));
+                y2 = Height - (int)Math.Round(HistB.At<float>(i));
+                color = new Scalar(255, 0, 0);
+                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
+                // Green
+                y1 = Height - (int)Math.Round(HistG.At<float>(i - 1));
+                y2 = Height - (int)Math.Round(HistG.At<float>(i));
+                color = new Scalar(0, 255, 0);
+                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
+            }
+            this.HistogramBox.Image = BitmapConverter.ToBitmap(render);
+        }
     }
 }
