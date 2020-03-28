@@ -22,9 +22,15 @@ namespace ImageEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.LoadSizeBoxes();
         }
-
+        
+        private void LoadSizeBoxes()
+        {
+            int height = this.imageBox.Height;
+            int width = this.imageBox.Width;
+            this.UpdateSizeBoxes(width, height);
+        }
         private void OpenButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofile = new OpenFileDialog();
@@ -32,10 +38,8 @@ namespace ImageEditor
             if (DialogResult.OK == ofile.ShowDialog())
             {
                 this.imageBox.Image = new Bitmap(ofile.FileName);
+                this.LoadSizeBoxes();
             }
-
-            imageBox.BringToFront();
-            imageBox.Visible = true;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -84,10 +88,9 @@ namespace ImageEditor
 
         private void Blur_Click(object sender, EventArgs e)
         {
-            Int32 radius = System.Convert.ToInt32(this.gaussianBlurRadius.Value);
+            Int32 radius = Decimal.ToInt32(this.gaussianBlurRadius.Value);
             OpenCvSharp.Size size = new OpenCvSharp.Size(radius, radius);
             Bitmap copy = new Bitmap(this.imageBox.Image);
-            //this.imageBox.Image = blurConvert(copy);
             Mat imageMat = BitmapConverter.ToMat(copy);
             Cv2.GaussianBlur(imageMat, imageMat, size, 0);
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
@@ -162,9 +165,7 @@ namespace ImageEditor
             Mat imageMat = BitmapConverter.ToMat(copy);
             Cv2.Rotate(imageMat, imageMat, RotateFlags.Rotate90Counterclockwise);
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
-            int height = this.imageBox.Height;
-            this.imageBox.Height = this.imageBox.Width;
-            this.imageBox.Width = height;
+            this.LoadSizeBoxes();
         }
 
         private void rotateRight_Click(object sender, EventArgs e)
@@ -173,9 +174,7 @@ namespace ImageEditor
             Mat imageMat = BitmapConverter.ToMat(copy);
             Cv2.Rotate(imageMat, imageMat, RotateFlags.Rotate90Clockwise);
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
-            int height = this.imageBox.Height;
-            this.imageBox.Height = this.imageBox.Width;
-            this.imageBox.Width = height;
+            this.LoadSizeBoxes();
         }
 
         private void FlipHorizontal_Click(object sender, EventArgs e)
@@ -192,6 +191,24 @@ namespace ImageEditor
             Mat imageMat = BitmapConverter.ToMat(copy);
             Cv2.Flip(imageMat, imageMat, FlipMode.X);
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
+        }
+
+        private void UpdateImageSize(int width, int height)
+        {
+            Bitmap copy = new Bitmap(this.imageBox.Image);
+            Mat imageMat = BitmapConverter.ToMat(copy);
+            Cv2.Resize(imageMat, imageMat, new OpenCvSharp.Size(width, height));
+            this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
+        }
+        private void UpdateSizeBoxes(int width, int height)
+        {
+            this.imageWidth.Value = width;
+            this.imageHeight.Value = height;
+        }
+
+        private void ChangeSizeButton_Click(object sender, EventArgs e)
+        {
+            this.UpdateImageSize(Decimal.ToInt32(this.imageWidth.Value), Decimal.ToInt32(this.imageHeight.Value));
         }
     }
 }

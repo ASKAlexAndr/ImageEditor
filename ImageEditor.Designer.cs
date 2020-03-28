@@ -41,10 +41,18 @@
             this.FlipVerical = new System.Windows.Forms.Button();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.imageBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ChangeSizeButton = new System.Windows.Forms.Button();
+            this.imageWidth = new System.Windows.Forms.NumericUpDown();
+            this.imageHeight = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).BeginInit();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // OpenButton
@@ -69,7 +77,7 @@
             // 
             // negative
             // 
-            this.negative.Location = new System.Drawing.Point(9, 220);
+            this.negative.Location = new System.Drawing.Point(9, 308);
             this.negative.Name = "negative";
             this.negative.Size = new System.Drawing.Size(223, 23);
             this.negative.TabIndex = 3;
@@ -79,7 +87,7 @@
             // 
             // gaussianBlur
             // 
-            this.gaussianBlur.Location = new System.Drawing.Point(105, 249);
+            this.gaussianBlur.Location = new System.Drawing.Point(105, 337);
             this.gaussianBlur.Name = "gaussianBlur";
             this.gaussianBlur.Size = new System.Drawing.Size(127, 20);
             this.gaussianBlur.TabIndex = 4;
@@ -94,7 +102,7 @@
             0,
             0,
             0});
-            this.gaussianBlurRadius.Location = new System.Drawing.Point(9, 249);
+            this.gaussianBlurRadius.Location = new System.Drawing.Point(9, 337);
             this.gaussianBlurRadius.Maximum = new decimal(new int[] {
             99,
             0,
@@ -117,7 +125,7 @@
             // 
             // medianBlurButton
             // 
-            this.medianBlurButton.Location = new System.Drawing.Point(105, 276);
+            this.medianBlurButton.Location = new System.Drawing.Point(105, 364);
             this.medianBlurButton.Name = "medianBlurButton";
             this.medianBlurButton.Size = new System.Drawing.Size(127, 21);
             this.medianBlurButton.TabIndex = 6;
@@ -132,7 +140,7 @@
             0,
             0,
             0});
-            this.medianBlurRadius.Location = new System.Drawing.Point(9, 276);
+            this.medianBlurRadius.Location = new System.Drawing.Point(9, 364);
             this.medianBlurRadius.Maximum = new decimal(new int[] {
             99,
             0,
@@ -157,7 +165,7 @@
             // 
             this.FlipHorizontal.BackgroundImage = global::ImageEditor.Properties.Resources.flip_horizontal;
             this.FlipHorizontal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipHorizontal.Location = new System.Drawing.Point(88, 71);
+            this.FlipHorizontal.Location = new System.Drawing.Point(91, 172);
             this.FlipHorizontal.Name = "FlipHorizontal";
             this.FlipHorizontal.Size = new System.Drawing.Size(70, 62);
             this.FlipHorizontal.TabIndex = 10;
@@ -168,7 +176,7 @@
             // 
             this.rotateRight.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_right;
             this.rotateRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateRight.Location = new System.Drawing.Point(164, 139);
+            this.rotateRight.Location = new System.Drawing.Point(167, 240);
             this.rotateRight.Name = "rotateRight";
             this.rotateRight.Size = new System.Drawing.Size(65, 62);
             this.rotateRight.TabIndex = 9;
@@ -179,7 +187,7 @@
             // 
             this.rotateLeft.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_left;
             this.rotateLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateLeft.Location = new System.Drawing.Point(9, 139);
+            this.rotateLeft.Location = new System.Drawing.Point(12, 240);
             this.rotateLeft.Name = "rotateLeft";
             this.rotateLeft.Size = new System.Drawing.Size(70, 62);
             this.rotateLeft.TabIndex = 8;
@@ -190,7 +198,7 @@
             // 
             this.FlipVerical.BackgroundImage = global::ImageEditor.Properties.Resources.flip_vertical;
             this.FlipVerical.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipVerical.Location = new System.Drawing.Point(88, 139);
+            this.FlipVerical.Location = new System.Drawing.Point(91, 240);
             this.FlipVerical.Name = "FlipVerical";
             this.FlipVerical.Size = new System.Drawing.Size(70, 62);
             this.FlipVerical.TabIndex = 11;
@@ -218,11 +226,98 @@
             this.imageBox.TabIndex = 0;
             this.imageBox.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(109, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "X";
+            // 
+            // ChangeSizeButton
+            // 
+            this.ChangeSizeButton.Location = new System.Drawing.Point(157, 108);
+            this.ChangeSizeButton.Name = "ChangeSizeButton";
+            this.ChangeSizeButton.Size = new System.Drawing.Size(75, 23);
+            this.ChangeSizeButton.TabIndex = 14;
+            this.ChangeSizeButton.Text = "Применить";
+            this.ChangeSizeButton.UseVisualStyleBackColor = true;
+            this.ChangeSizeButton.Click += new System.EventHandler(this.ChangeSizeButton_Click);
+            // 
+            // imageWidth
+            // 
+            this.imageWidth.Location = new System.Drawing.Point(12, 82);
+            this.imageWidth.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.imageWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.imageWidth.Name = "imageWidth";
+            this.imageWidth.Size = new System.Drawing.Size(87, 20);
+            this.imageWidth.TabIndex = 15;
+            this.imageWidth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // imageHeight
+            // 
+            this.imageHeight.Location = new System.Drawing.Point(129, 82);
+            this.imageHeight.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.imageHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.imageHeight.Name = "imageHeight";
+            this.imageHeight.Size = new System.Drawing.Size(103, 20);
+            this.imageHeight.TabIndex = 16;
+            this.imageHeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(126, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Высота";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Ширина";
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 624);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.imageHeight);
+            this.Controls.Add(this.imageWidth);
+            this.Controls.Add(this.ChangeSizeButton);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.imagePanel);
             this.Controls.Add(this.FlipVerical);
             this.Controls.Add(this.FlipHorizontal);
@@ -243,6 +338,8 @@
             this.imagePanel.ResumeLayout(false);
             this.imagePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +359,12 @@
         private System.Windows.Forms.Button FlipVerical;
         private System.Windows.Forms.Panel imagePanel;
         private System.Windows.Forms.PictureBox imageBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button ChangeSizeButton;
+        private System.Windows.Forms.NumericUpDown imageWidth;
+        private System.Windows.Forms.NumericUpDown imageHeight;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
