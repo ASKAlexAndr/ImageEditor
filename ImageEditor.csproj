@@ -15,6 +15,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -139,18 +154,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\drakon_past_ogon_plamya_voyna_srazhenie_61650_1920x1080.jpg" />
-    <Content Include="Resources\drakon_polet_past_skaly_noch_69221_1920x1080.jpg" />
-    <Content Include="Resources\dzhungli_fentezi_oleni_babochki_noch_derevya_102121_1920x1080.jpg" />
     <None Include="Resources\flip-horizontal.png" />
     <None Include="Resources\flip-vertical.png" />
-    <Content Include="Resources\kosmos_fon_siniy_tochki_73340_1920x1080.jpg" />
-    <Content Include="Resources\ozero_derevia_kamni_128532_1920x1080.jpg" />
-    <Content Include="Resources\reka_domik_art_131397_1920x1080.jpg" />
     <Content Include="Resources\Rotate_left.png" />
     <Content Include="Resources\Rotate_right.png" />
-    <Content Include="Resources\skaly_razrushenie_gorod_peyzazh_vodopad_69033_1920x1080.jpg" />
-    <Content Include="Resources\zkVyyLYdQTY.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

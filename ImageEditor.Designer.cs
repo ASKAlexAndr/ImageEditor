@@ -35,10 +35,6 @@
             this.gaussianBlurRadius = new System.Windows.Forms.NumericUpDown();
             this.medianBlurButton = new System.Windows.Forms.Button();
             this.medianBlurRadius = new System.Windows.Forms.NumericUpDown();
-            this.FlipHorizontal = new System.Windows.Forms.Button();
-            this.rotateRight = new System.Windows.Forms.Button();
-            this.rotateLeft = new System.Windows.Forms.Button();
-            this.FlipVerical = new System.Windows.Forms.Button();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.imageBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,8 +45,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.AddNoize = new System.Windows.Forms.Button();
             this.noisePower = new System.Windows.Forms.NumericUpDown();
-            this.HistogramBox = new System.Windows.Forms.PictureBox();
             this.CalcHistButton = new System.Windows.Forms.Button();
+            this.HistogramBox = new System.Windows.Forms.PictureBox();
+            this.FlipVerical = new System.Windows.Forms.Button();
+            this.FlipHorizontal = new System.Windows.Forms.Button();
+            this.rotateRight = new System.Windows.Forms.Button();
+            this.rotateLeft = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).BeginInit();
             this.imagePanel.SuspendLayout();
@@ -167,67 +167,22 @@
             0});
             this.medianBlurRadius.ValueChanged += new System.EventHandler(this.medianBlurRadius_ValueChanged);
             // 
-            // FlipHorizontal
-            // 
-            this.FlipHorizontal.BackgroundImage = global::ImageEditor.Properties.Resources.flip_horizontal;
-            this.FlipHorizontal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipHorizontal.Location = new System.Drawing.Point(91, 172);
-            this.FlipHorizontal.Name = "FlipHorizontal";
-            this.FlipHorizontal.Size = new System.Drawing.Size(70, 62);
-            this.FlipHorizontal.TabIndex = 10;
-            this.FlipHorizontal.UseVisualStyleBackColor = true;
-            this.FlipHorizontal.Click += new System.EventHandler(this.FlipHorizontal_Click);
-            // 
-            // rotateRight
-            // 
-            this.rotateRight.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_right;
-            this.rotateRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateRight.Location = new System.Drawing.Point(167, 240);
-            this.rotateRight.Name = "rotateRight";
-            this.rotateRight.Size = new System.Drawing.Size(65, 62);
-            this.rotateRight.TabIndex = 9;
-            this.rotateRight.UseVisualStyleBackColor = true;
-            this.rotateRight.Click += new System.EventHandler(this.rotateRight_Click);
-            // 
-            // rotateLeft
-            // 
-            this.rotateLeft.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_left;
-            this.rotateLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateLeft.Location = new System.Drawing.Point(12, 240);
-            this.rotateLeft.Name = "rotateLeft";
-            this.rotateLeft.Size = new System.Drawing.Size(70, 62);
-            this.rotateLeft.TabIndex = 8;
-            this.rotateLeft.UseVisualStyleBackColor = true;
-            this.rotateLeft.Click += new System.EventHandler(this.rotateLeft_Click);
-            // 
-            // FlipVerical
-            // 
-            this.FlipVerical.BackgroundImage = global::ImageEditor.Properties.Resources.flip_vertical;
-            this.FlipVerical.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipVerical.Location = new System.Drawing.Point(91, 240);
-            this.FlipVerical.Name = "FlipVerical";
-            this.FlipVerical.Size = new System.Drawing.Size(70, 62);
-            this.FlipVerical.TabIndex = 11;
-            this.FlipVerical.UseVisualStyleBackColor = true;
-            this.FlipVerical.Click += new System.EventHandler(this.FlipVerical_Click);
-            // 
             // imagePanel
             // 
             this.imagePanel.AutoScroll = true;
             this.imagePanel.AutoSize = true;
             this.imagePanel.Controls.Add(this.imageBox);
-            this.imagePanel.Location = new System.Drawing.Point(271, 12);
-            this.imagePanel.MaximumSize = new System.Drawing.Size(800, 600);
+            this.imagePanel.Location = new System.Drawing.Point(249, 12);
+            this.imagePanel.MaximumSize = new System.Drawing.Size(840, 600);
             this.imagePanel.Name = "imagePanel";
-            this.imagePanel.Size = new System.Drawing.Size(800, 600);
+            this.imagePanel.Size = new System.Drawing.Size(840, 600);
             this.imagePanel.TabIndex = 12;
             // 
             // imageBox
             // 
-            this.imageBox.Image = global::ImageEditor.Properties.Resources.drakon_past_ogon_plamya_voyna_srazhenie_61650_1920x1080;
-            this.imageBox.Location = new System.Drawing.Point(0, 0);
+            this.imageBox.Location = new System.Drawing.Point(0, 3);
             this.imageBox.Name = "imageBox";
-            this.imageBox.Size = new System.Drawing.Size(1920, 1080);
+            this.imageBox.Size = new System.Drawing.Size(820, 590);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 0;
             this.imageBox.TabStop = false;
@@ -330,14 +285,6 @@
             this.noisePower.Size = new System.Drawing.Size(90, 20);
             this.noisePower.TabIndex = 20;
             // 
-            // HistogramBox
-            // 
-            this.HistogramBox.Location = new System.Drawing.Point(9, 450);
-            this.HistogramBox.Name = "HistogramBox";
-            this.HistogramBox.Size = new System.Drawing.Size(223, 146);
-            this.HistogramBox.TabIndex = 21;
-            this.HistogramBox.TabStop = false;
-            // 
             // CalcHistButton
             // 
             this.CalcHistButton.Location = new System.Drawing.Point(12, 421);
@@ -348,10 +295,63 @@
             this.CalcHistButton.UseVisualStyleBackColor = true;
             this.CalcHistButton.Click += new System.EventHandler(this.CalcHistButton_Click);
             // 
+            // HistogramBox
+            // 
+            this.HistogramBox.Location = new System.Drawing.Point(9, 450);
+            this.HistogramBox.Name = "HistogramBox";
+            this.HistogramBox.Size = new System.Drawing.Size(223, 146);
+            this.HistogramBox.TabIndex = 21;
+            this.HistogramBox.TabStop = false;
+            // 
+            // FlipVerical
+            // 
+            this.FlipVerical.BackgroundImage = global::ImageEditor.Properties.Resources.flip_vertical;
+            this.FlipVerical.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.FlipVerical.Location = new System.Drawing.Point(91, 240);
+            this.FlipVerical.Name = "FlipVerical";
+            this.FlipVerical.Size = new System.Drawing.Size(70, 62);
+            this.FlipVerical.TabIndex = 11;
+            this.FlipVerical.UseVisualStyleBackColor = true;
+            this.FlipVerical.Click += new System.EventHandler(this.FlipVerical_Click);
+            // 
+            // FlipHorizontal
+            // 
+            this.FlipHorizontal.BackgroundImage = global::ImageEditor.Properties.Resources.flip_horizontal;
+            this.FlipHorizontal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.FlipHorizontal.Location = new System.Drawing.Point(91, 172);
+            this.FlipHorizontal.Name = "FlipHorizontal";
+            this.FlipHorizontal.Size = new System.Drawing.Size(70, 62);
+            this.FlipHorizontal.TabIndex = 10;
+            this.FlipHorizontal.UseVisualStyleBackColor = true;
+            this.FlipHorizontal.Click += new System.EventHandler(this.FlipHorizontal_Click);
+            // 
+            // rotateRight
+            // 
+            this.rotateRight.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_right;
+            this.rotateRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rotateRight.Location = new System.Drawing.Point(167, 240);
+            this.rotateRight.Name = "rotateRight";
+            this.rotateRight.Size = new System.Drawing.Size(65, 62);
+            this.rotateRight.TabIndex = 9;
+            this.rotateRight.UseVisualStyleBackColor = true;
+            this.rotateRight.Click += new System.EventHandler(this.rotateRight_Click);
+            // 
+            // rotateLeft
+            // 
+            this.rotateLeft.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_left;
+            this.rotateLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rotateLeft.Location = new System.Drawing.Point(12, 240);
+            this.rotateLeft.Name = "rotateLeft";
+            this.rotateLeft.Size = new System.Drawing.Size(70, 62);
+            this.rotateLeft.TabIndex = 8;
+            this.rotateLeft.UseVisualStyleBackColor = true;
+            this.rotateLeft.Click += new System.EventHandler(this.rotateLeft_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1118, 624);
             this.Controls.Add(this.CalcHistButton);
             this.Controls.Add(this.HistogramBox);

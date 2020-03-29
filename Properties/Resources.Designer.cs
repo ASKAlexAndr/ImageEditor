@@ -63,36 +63,6 @@ namespace ImageEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap drakon_past_ogon_plamya_voyna_srazhenie_61650_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("drakon_past_ogon_plamya_voyna_srazhenie_61650_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap drakon_polet_past_skaly_noch_69221_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("drakon_polet_past_skaly_noch_69221_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap dzhungli_fentezi_oleni_babochki_noch_derevya_102121_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("dzhungli_fentezi_oleni_babochki_noch_derevya_102121_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap flip_horizontal {
             get {
                 object obj = ResourceManager.GetObject("flip-horizontal", resourceCulture);
@@ -113,36 +83,6 @@ namespace ImageEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kosmos_fon_siniy_tochki_73340_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("kosmos_fon_siniy_tochki_73340_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ozero_derevia_kamni_128532_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("ozero_derevia_kamni_128532_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap reka_domik_art_131397_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("reka_domik_art_131397_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Rotate_left {
             get {
                 object obj = ResourceManager.GetObject("Rotate_left", resourceCulture);
@@ -156,26 +96,6 @@ namespace ImageEditor.Properties {
         internal static System.Drawing.Bitmap Rotate_right {
             get {
                 object obj = ResourceManager.GetObject("Rotate_right", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap skaly_razrushenie_gorod_peyzazh_vodopad_69033_1920x1080 {
-            get {
-                object obj = ResourceManager.GetObject("skaly_razrushenie_gorod_peyzazh_vodopad_69033_1920x1080", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap zkVyyLYdQTY {
-            get {
-                object obj = ResourceManager.GetObject("zkVyyLYdQTY", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
