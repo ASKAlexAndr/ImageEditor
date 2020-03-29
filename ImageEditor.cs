@@ -88,9 +88,6 @@ namespace ImageEditor
         {
             Bitmap copy = new Bitmap(this.imageBox.Image);
             this.imageBox.Image = negativeConvert(copy);
-
-            imageBox.BringToFront();
-            imageBox.Visible = true;
         }
 
         public Bitmap negativeConvert(Bitmap b)
@@ -126,42 +123,6 @@ namespace ImageEditor
             Mat imageMat = BitmapConverter.ToMat(copy);
             Cv2.GaussianBlur(imageMat, imageMat, size, 0);
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
-        }
-
-        public Bitmap blurConvert(Bitmap b)
-        {
-            Int32 radius = System.Convert.ToInt32(this.gaussianBlurRadius.Value);
-            for (int i = 0; i < b.Width; i++)
-                for (int j = 0; j < b.Height; j++)
-                {
-                    Int32 avgR = 0, avgG = 0, avgB = 0;
-                    Int32 blurPixelCount = 0;
-
-                    for (Int32 x = i; (x < i + radius && x < b.Width); x++)
-                    {
-                        for (Int32 y = j; (y < j + radius && y < b.Height); y++)
-                        {
-                            Color pixel = b.GetPixel(x, y);
-                            avgR += pixel.R;
-                            avgG += pixel.G;
-                            avgB += pixel.B;
-
-                            blurPixelCount++;
-                        }
-                    }
-                    avgR = avgR / blurPixelCount;
-                    avgG = avgG / blurPixelCount;
-                    avgB = avgB / blurPixelCount;
-                    for (Int32 x = i; x < i + radius && x < b.Width; x++)
-                    {
-                        for (Int32 y = j; y < j + radius && y < b.Height; y++)
-                        {
-                            b.SetPixel(x, y, Color.FromArgb(avgR, avgG, avgB));
-                        }
-                    }
-                }
-
-            return b;
         }
 
         private void GaussianBlurRadius_ValueChanged(object sender, EventArgs e)
