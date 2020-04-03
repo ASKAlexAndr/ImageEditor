@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
@@ -18,22 +12,6 @@ namespace ImageEditor
         public ImageEditor()
         {
             InitializeComponent();
-            this.SaveButton.Enabled = false;
-            this.CalcHistButton.Enabled = false;
-            this.gaussianBlur.Enabled = false;
-            this.medianBlurButton.Enabled = false;
-            this.rotateLeft.Enabled = false;
-            this.rotateRight.Enabled = false;
-            this.FlipHorizontal.Enabled = false;
-            this.FlipVerical.Enabled = false;
-            this.negative.Enabled = false;
-            this.AddNoize.Enabled = false;
-            this.ChangeSizeButton.Enabled = false;
-            this.imageWidth.Enabled = false;
-            this.imageHeight.Enabled = false;
-            this.noisePower.Enabled = false;
-            this.gaussianBlurRadius.Enabled = false;
-            this.medianBlurRadius.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,22 +33,6 @@ namespace ImageEditor
             {
                 this.imageBox.Image = new Bitmap(ofile.FileName);
                 this.LoadSizeBoxes();
-                this.SaveButton.Enabled = true;
-                this.CalcHistButton.Enabled = true;
-                this.gaussianBlur.Enabled = true;
-                this.medianBlurButton.Enabled = true;
-                this.rotateLeft.Enabled = true;
-                this.rotateRight.Enabled = true;
-                this.FlipHorizontal.Enabled = true;
-                this.FlipVerical.Enabled = true;
-                this.negative.Enabled = true;
-                this.AddNoize.Enabled = true;
-                this.ChangeSizeButton.Enabled = true;
-                this.imageWidth.Enabled = true;
-                this.imageHeight.Enabled = true;
-                this.noisePower.Enabled = true;
-                this.gaussianBlurRadius.Enabled = true;
-                this.medianBlurRadius.Enabled = true;
             }
         }
 

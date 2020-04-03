@@ -156,6 +156,7 @@
   <ItemGroup>
     <None Include="Resources\flip-horizontal.png" />
     <None Include="Resources\flip-vertical.png" />
+    <None Include="Resources\image.bmp" />
     <Content Include="Resources\Rotate_left.png" />
     <Content Include="Resources\Rotate_right.png" />
   </ItemGroup>

@@ -97,7 +97,7 @@
             this.gaussianBlur.Name = "gaussianBlur";
             this.gaussianBlur.Size = new System.Drawing.Size(127, 20);
             this.gaussianBlur.TabIndex = 4;
-            this.gaussianBlur.Text = "Размытие по Гауссу";
+            this.gaussianBlur.Text = "Фильтр Гаусса";
             this.gaussianBlur.UseVisualStyleBackColor = true;
             this.gaussianBlur.Click += new System.EventHandler(this.Blur_Click);
             // 
@@ -135,7 +135,7 @@
             this.medianBlurButton.Name = "medianBlurButton";
             this.medianBlurButton.Size = new System.Drawing.Size(127, 21);
             this.medianBlurButton.TabIndex = 6;
-            this.medianBlurButton.Text = "Медианное размытие";
+            this.medianBlurButton.Text = "Медианный фильтр";
             this.medianBlurButton.UseVisualStyleBackColor = true;
             this.medianBlurButton.Click += new System.EventHandler(this.medianBlurButton_Click);
             // 
@@ -180,9 +180,11 @@
             // 
             // imageBox
             // 
+            this.imageBox.Image = global::ImageEditor.Properties.Resources.image;
+            this.imageBox.InitialImage = global::ImageEditor.Properties.Resources.image;
             this.imageBox.Location = new System.Drawing.Point(0, 3);
             this.imageBox.Name = "imageBox";
-            this.imageBox.Size = new System.Drawing.Size(820, 590);
+            this.imageBox.Size = new System.Drawing.Size(999, 562);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 0;
             this.imageBox.TabStop = false;
@@ -375,6 +377,7 @@
             this.Controls.Add(this.negative);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OpenButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ImageEditor";
             this.Text = "Редактор изображений";
             this.Load += new System.EventHandler(this.Form1_Load);
