@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.histChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.OpenButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.negative = new System.Windows.Forms.Button();
@@ -46,11 +50,12 @@
             this.AddNoize = new System.Windows.Forms.Button();
             this.noisePower = new System.Windows.Forms.NumericUpDown();
             this.CalcHistButton = new System.Windows.Forms.Button();
-            this.HistogramBox = new System.Windows.Forms.PictureBox();
+            this.GrayButton = new System.Windows.Forms.Button();
             this.FlipVerical = new System.Windows.Forms.Button();
             this.FlipHorizontal = new System.Windows.Forms.Button();
             this.rotateRight = new System.Windows.Forms.Button();
             this.rotateLeft = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.histChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).BeginInit();
             this.imagePanel.SuspendLayout();
@@ -58,14 +63,49 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noisePower)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HistogramBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // histChart
+            // 
+            this.histChart.BackColor = System.Drawing.SystemColors.ButtonFace;
+            chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.None;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.Black;
+            chartArea1.BorderWidth = 0;
+            chartArea1.Name = "ChartArea1";
+            this.histChart.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Far;
+            legend1.AutoFitMinFontSize = 8;
+            legend1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Bottom;
+            legend1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.ItemColumnSpacing = 15;
+            legend1.LegendItemOrder = System.Windows.Forms.DataVisualization.Charting.LegendItemOrder.SameAsSeriesOrder;
+            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Column;
+            legend1.MaximumAutoSize = 100F;
+            legend1.Name = "Legend1";
+            this.histChart.Legends.Add(legend1);
+            this.histChart.Location = new System.Drawing.Point(3, 333);
+            this.histChart.Name = "histChart";
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series1.Legend = "Legend1";
+            series1.MarkerSize = 3;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series1.Name = "Series1";
+            this.histChart.Series.Add(series1);
+            this.histChart.Size = new System.Drawing.Size(340, 279);
+            this.histChart.TabIndex = 1;
+            this.histChart.Text = "Гистограмма";
             // 
             // OpenButton
             // 
             this.OpenButton.Location = new System.Drawing.Point(12, 12);
             this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(101, 42);
+            this.OpenButton.Size = new System.Drawing.Size(159, 42);
             this.OpenButton.TabIndex = 1;
             this.OpenButton.Text = "Открыть";
             this.OpenButton.UseVisualStyleBackColor = true;
@@ -73,9 +113,9 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(129, 12);
+            this.SaveButton.Location = new System.Drawing.Point(177, 12);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(103, 42);
+            this.SaveButton.Size = new System.Drawing.Size(153, 42);
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Сохранить";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -83,9 +123,9 @@
             // 
             // negative
             // 
-            this.negative.Location = new System.Drawing.Point(9, 308);
+            this.negative.Location = new System.Drawing.Point(15, 262);
             this.negative.Name = "negative";
-            this.negative.Size = new System.Drawing.Size(223, 23);
+            this.negative.Size = new System.Drawing.Size(313, 23);
             this.negative.TabIndex = 3;
             this.negative.Text = "Негатив";
             this.negative.UseVisualStyleBackColor = true;
@@ -93,9 +133,9 @@
             // 
             // gaussianBlur
             // 
-            this.gaussianBlur.Location = new System.Drawing.Point(105, 337);
+            this.gaussianBlur.Location = new System.Drawing.Point(141, 177);
             this.gaussianBlur.Name = "gaussianBlur";
-            this.gaussianBlur.Size = new System.Drawing.Size(127, 20);
+            this.gaussianBlur.Size = new System.Drawing.Size(187, 20);
             this.gaussianBlur.TabIndex = 4;
             this.gaussianBlur.Text = "Фильтр Гаусса";
             this.gaussianBlur.UseVisualStyleBackColor = true;
@@ -108,7 +148,7 @@
             0,
             0,
             0});
-            this.gaussianBlurRadius.Location = new System.Drawing.Point(9, 337);
+            this.gaussianBlurRadius.Location = new System.Drawing.Point(15, 177);
             this.gaussianBlurRadius.Maximum = new decimal(new int[] {
             99,
             0,
@@ -120,7 +160,7 @@
             0,
             0});
             this.gaussianBlurRadius.Name = "gaussianBlurRadius";
-            this.gaussianBlurRadius.Size = new System.Drawing.Size(90, 20);
+            this.gaussianBlurRadius.Size = new System.Drawing.Size(120, 20);
             this.gaussianBlurRadius.TabIndex = 5;
             this.gaussianBlurRadius.Value = new decimal(new int[] {
             1,
@@ -131,9 +171,9 @@
             // 
             // medianBlurButton
             // 
-            this.medianBlurButton.Location = new System.Drawing.Point(105, 364);
+            this.medianBlurButton.Location = new System.Drawing.Point(141, 206);
             this.medianBlurButton.Name = "medianBlurButton";
-            this.medianBlurButton.Size = new System.Drawing.Size(127, 21);
+            this.medianBlurButton.Size = new System.Drawing.Size(187, 21);
             this.medianBlurButton.TabIndex = 6;
             this.medianBlurButton.Text = "Медианный фильтр";
             this.medianBlurButton.UseVisualStyleBackColor = true;
@@ -146,7 +186,7 @@
             0,
             0,
             0});
-            this.medianBlurRadius.Location = new System.Drawing.Point(9, 364);
+            this.medianBlurRadius.Location = new System.Drawing.Point(15, 208);
             this.medianBlurRadius.Maximum = new decimal(new int[] {
             99,
             0,
@@ -158,7 +198,7 @@
             0,
             0});
             this.medianBlurRadius.Name = "medianBlurRadius";
-            this.medianBlurRadius.Size = new System.Drawing.Size(90, 20);
+            this.medianBlurRadius.Size = new System.Drawing.Size(120, 20);
             this.medianBlurRadius.TabIndex = 7;
             this.medianBlurRadius.Value = new decimal(new int[] {
             1,
@@ -172,7 +212,7 @@
             this.imagePanel.AutoScroll = true;
             this.imagePanel.AutoSize = true;
             this.imagePanel.Controls.Add(this.imageBox);
-            this.imagePanel.Location = new System.Drawing.Point(249, 12);
+            this.imagePanel.Location = new System.Drawing.Point(336, 12);
             this.imagePanel.MaximumSize = new System.Drawing.Size(840, 600);
             this.imagePanel.Name = "imagePanel";
             this.imagePanel.Size = new System.Drawing.Size(840, 600);
@@ -182,9 +222,9 @@
             // 
             this.imageBox.Image = global::ImageEditor.Properties.Resources.image;
             this.imageBox.InitialImage = global::ImageEditor.Properties.Resources.image;
-            this.imageBox.Location = new System.Drawing.Point(0, 3);
+            this.imageBox.Location = new System.Drawing.Point(3, 0);
             this.imageBox.Name = "imageBox";
-            this.imageBox.Size = new System.Drawing.Size(999, 562);
+            this.imageBox.Size = new System.Drawing.Size(1100, 619);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 0;
             this.imageBox.TabStop = false;
@@ -200,7 +240,7 @@
             // 
             // ChangeSizeButton
             // 
-            this.ChangeSizeButton.Location = new System.Drawing.Point(157, 108);
+            this.ChangeSizeButton.Location = new System.Drawing.Point(255, 79);
             this.ChangeSizeButton.Name = "ChangeSizeButton";
             this.ChangeSizeButton.Size = new System.Drawing.Size(75, 23);
             this.ChangeSizeButton.TabIndex = 14;
@@ -210,7 +250,7 @@
             // 
             // imageWidth
             // 
-            this.imageWidth.Location = new System.Drawing.Point(12, 82);
+            this.imageWidth.Location = new System.Drawing.Point(16, 82);
             this.imageWidth.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -264,7 +304,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 66);
+            this.label3.Location = new System.Drawing.Point(13, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 18;
@@ -272,9 +312,9 @@
             // 
             // AddNoize
             // 
-            this.AddNoize.Location = new System.Drawing.Point(105, 391);
+            this.AddNoize.Location = new System.Drawing.Point(141, 233);
             this.AddNoize.Name = "AddNoize";
-            this.AddNoize.Size = new System.Drawing.Size(127, 22);
+            this.AddNoize.Size = new System.Drawing.Size(187, 22);
             this.AddNoize.TabIndex = 19;
             this.AddNoize.Text = "Шум";
             this.AddNoize.UseVisualStyleBackColor = true;
@@ -282,34 +322,36 @@
             // 
             // noisePower
             // 
-            this.noisePower.Location = new System.Drawing.Point(9, 392);
+            this.noisePower.Location = new System.Drawing.Point(15, 236);
             this.noisePower.Name = "noisePower";
-            this.noisePower.Size = new System.Drawing.Size(90, 20);
+            this.noisePower.Size = new System.Drawing.Size(120, 20);
             this.noisePower.TabIndex = 20;
             // 
             // CalcHistButton
             // 
-            this.CalcHistButton.Location = new System.Drawing.Point(12, 421);
+            this.CalcHistButton.Location = new System.Drawing.Point(16, 291);
             this.CalcHistButton.Name = "CalcHistButton";
-            this.CalcHistButton.Size = new System.Drawing.Size(220, 23);
+            this.CalcHistButton.Size = new System.Drawing.Size(312, 23);
             this.CalcHistButton.TabIndex = 22;
             this.CalcHistButton.Text = "Гистограмма";
             this.CalcHistButton.UseVisualStyleBackColor = true;
             this.CalcHistButton.Click += new System.EventHandler(this.CalcHistButton_Click);
             // 
-            // HistogramBox
+            // GrayButton
             // 
-            this.HistogramBox.Location = new System.Drawing.Point(9, 450);
-            this.HistogramBox.Name = "HistogramBox";
-            this.HistogramBox.Size = new System.Drawing.Size(223, 146);
-            this.HistogramBox.TabIndex = 21;
-            this.HistogramBox.TabStop = false;
+            this.GrayButton.Location = new System.Drawing.Point(16, 320);
+            this.GrayButton.Name = "GrayButton";
+            this.GrayButton.Size = new System.Drawing.Size(312, 23);
+            this.GrayButton.TabIndex = 23;
+            this.GrayButton.Text = "Ч/Б";
+            this.GrayButton.UseVisualStyleBackColor = true;
+            this.GrayButton.Click += new System.EventHandler(this.GrayButton_Click);
             // 
             // FlipVerical
             // 
             this.FlipVerical.BackgroundImage = global::ImageEditor.Properties.Resources.flip_vertical;
             this.FlipVerical.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipVerical.Location = new System.Drawing.Point(91, 240);
+            this.FlipVerical.Location = new System.Drawing.Point(177, 111);
             this.FlipVerical.Name = "FlipVerical";
             this.FlipVerical.Size = new System.Drawing.Size(70, 62);
             this.FlipVerical.TabIndex = 11;
@@ -320,7 +362,7 @@
             // 
             this.FlipHorizontal.BackgroundImage = global::ImageEditor.Properties.Resources.flip_horizontal;
             this.FlipHorizontal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FlipHorizontal.Location = new System.Drawing.Point(91, 172);
+            this.FlipHorizontal.Location = new System.Drawing.Point(96, 109);
             this.FlipHorizontal.Name = "FlipHorizontal";
             this.FlipHorizontal.Size = new System.Drawing.Size(70, 62);
             this.FlipHorizontal.TabIndex = 10;
@@ -331,7 +373,7 @@
             // 
             this.rotateRight.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_right;
             this.rotateRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateRight.Location = new System.Drawing.Point(167, 240);
+            this.rotateRight.Location = new System.Drawing.Point(263, 111);
             this.rotateRight.Name = "rotateRight";
             this.rotateRight.Size = new System.Drawing.Size(65, 62);
             this.rotateRight.TabIndex = 9;
@@ -342,7 +384,7 @@
             // 
             this.rotateLeft.BackgroundImage = global::ImageEditor.Properties.Resources.Rotate_left;
             this.rotateLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rotateLeft.Location = new System.Drawing.Point(12, 240);
+            this.rotateLeft.Location = new System.Drawing.Point(15, 109);
             this.rotateLeft.Name = "rotateLeft";
             this.rotateLeft.Size = new System.Drawing.Size(70, 62);
             this.rotateLeft.TabIndex = 8;
@@ -355,8 +397,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1118, 624);
+            this.Controls.Add(this.GrayButton);
             this.Controls.Add(this.CalcHistButton);
-            this.Controls.Add(this.HistogramBox);
             this.Controls.Add(this.noisePower);
             this.Controls.Add(this.AddNoize);
             this.Controls.Add(this.label3);
@@ -377,10 +419,12 @@
             this.Controls.Add(this.negative);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OpenButton);
+            this.Controls.Add(this.histChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ImageEditor";
             this.Text = "Редактор изображений";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.histChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gaussianBlurRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medianBlurRadius)).EndInit();
             this.imagePanel.ResumeLayout(false);
@@ -389,7 +433,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.noisePower)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HistogramBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,8 +460,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button AddNoize;
         private System.Windows.Forms.NumericUpDown noisePower;
-        private System.Windows.Forms.PictureBox HistogramBox;
         private System.Windows.Forms.Button CalcHistButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart histChart;
+        private System.Windows.Forms.Button GrayButton;
     }
 }
 

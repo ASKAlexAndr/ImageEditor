@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 
@@ -17,6 +18,7 @@ namespace ImageEditor
         private void Form1_Load(object sender, EventArgs e)
         {
             this.LoadSizeBoxes();
+            this.CalcImageHistogram();
         }
         
         private void LoadSizeBoxes()
@@ -33,6 +35,7 @@ namespace ImageEditor
             {
                 this.imageBox.Image = new Bitmap(ofile.FileName);
                 this.LoadSizeBoxes();
+                CalcImageHistogram();
             }
         }
 
@@ -178,78 +181,96 @@ namespace ImageEditor
             this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
         }
 
-        private void CalcHistButton_Click(object sender, EventArgs e)
+        private void RenderHistogram(Mat hist, String label, Color color)
         {
-            int histSize = 128;
+            Series series = this.histChart.Series.Add(label);
+            series.ChartType = SeriesChartType.Spline;
+            series.BorderWidth = 1;
+            series.Color = color;
+            for (int Row = 0; Row < hist.Rows; Row++)
+            {
+                series.Points.AddXY(Row, hist.At<float>(Row));          
+            }
+        }
+
+        private bool IsGrayScale()
+        {
+            Bitmap img = new Bitmap(this.imageBox.Image);
+            Mat imageMat = BitmapConverter.ToMat(img);
+            Mat[] mv;
+            Cv2.Split(imageMat, out mv);
+            for (int i = 0; i < mv.Length; i++)
+            {
+                for (int k = 0; k < mv[0].Rows; k++)
+                {
+                    if (mv[0].At<float>(k) != mv[1].At<float>(k) || mv[1].At<float>(k) != mv[2].At<float>(k)) return false;
+                }
+            }
+            return true;
+        }
+        private void CalcImageHistogram()
+        {
+            int histSize = 256;
             int[] dimensions = { histSize };
             Rangef[] ranges = { new Rangef(0, histSize) };
             Mat[] mv;
             Bitmap img = new Bitmap(this.imageBox.Image);
             Mat imageMat = BitmapConverter.ToMat(img);
 
-            int Width = this.HistogramBox.Width, Height = this.HistogramBox.Height;
-            Mat render = new Mat(new OpenCvSharp.Size(Width, Height), MatType.CV_8U, Scalar.All(0));
-
             Cv2.Split(imageMat, out mv);
-            Mat HistR = new Mat();
-            Mat HistG = new Mat();
-            Mat HistB = new Mat();
-            Cv2.CalcHist(
-                new Mat[] {mv[2]},
-                new int[] {0},
-                null,
-                HistR,
-                1,
-                dimensions,
-                ranges
-                );
-            Cv2.CalcHist(
-              new Mat[] { mv[1] },
-              new int[] { 0 },
-              null,
-              HistG,
-              1,
-              dimensions,
-              ranges
-              );
-            Cv2.CalcHist(
-              new Mat[] { mv[0] },
-              new int[] { 0 },
-              null,
-              HistB,
-              1,
-              dimensions,
-              ranges
-              );
-            Cv2.Normalize(HistR, HistR, 0, 255, NormTypes.MinMax);
-            Cv2.Normalize(HistG, HistG, 0, 255, NormTypes.MinMax);
-            Cv2.Normalize(HistB, HistB, 0, 255, NormTypes.MinMax);
-            int x1, y1;
-            int x2, y2;
-            int ratio = (int)Math.Round((double)Width / histSize);
-            Cv2.CvtColor(render, render, ColorConversionCodes.GRAY2RGB);
-            Scalar color = new Scalar(255,0,0);
-            for (int i = 1; i < histSize; i++)
+            if (IsGrayScale())
             {
-                x1 = ratio * (i - 1);
-                x2 = ratio * (i);
-                // Red
-                y1 = Height - (int)Math.Round(HistR.At<float>(i - 1));
-                y2 = Height - (int)Math.Round(HistR.At<float>(i));
-                color = new Scalar(0, 0, 255);
-                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
-                // Blue
-                y1 = Height - (int)Math.Round(HistB.At<float>(i - 1));
-                y2 = Height - (int)Math.Round(HistB.At<float>(i));
-                color = new Scalar(255, 0, 0);
-                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
-                // Green
-                y1 = Height - (int)Math.Round(HistG.At<float>(i - 1));
-                y2 = Height - (int)Math.Round(HistG.At<float>(i));
-                color = new Scalar(0, 255, 0);
-                Cv2.Line(render, new OpenCvSharp.Point(x1, y1), new OpenCvSharp.Point(x2, y2), color, 1);
+                Mat Hist = new Mat();
+                Cv2.CalcHist(new Mat[] { mv[2] }, new int[] { 0 }, null, Hist, 1, dimensions, ranges);
+                Cv2.Normalize(Hist, Hist, 0, 256, NormTypes.MinMax);
+                this.histChart.Series.Clear();
+                this.histChart.ChartAreas[0].AxisX.Minimum = 0;
+                this.histChart.ChartAreas[0].AxisY.Minimum = 0;
+                this.histChart.Legends[0].Enabled = false;
+                RenderHistogram(Hist, "Яркость", Color.Black);
+            } else
+            {
+                Mat GrayScaleImage = new Mat();
+                Cv2.CvtColor(imageMat, GrayScaleImage, ColorConversionCodes.BGR2GRAY);
+                Mat HistR = new Mat();
+                Mat HistG = new Mat();
+                Mat HistB = new Mat();
+                Mat HistGray = new Mat();
+
+                Cv2.CalcHist(new Mat[] { mv[2] }, new int[] { 0 }, null, HistR, 1, dimensions, ranges);
+                Cv2.CalcHist(new Mat[] { mv[1] }, new int[] { 0 }, null, HistG, 1, dimensions, ranges);
+                Cv2.CalcHist(new Mat[] { mv[0] }, new int[] { 0 }, null, HistB, 1, dimensions, ranges);
+
+                Mat[] gs_mv;
+                Cv2.Split(GrayScaleImage, out gs_mv);
+                Cv2.CalcHist(new Mat[] { gs_mv[0] }, new int[] { 0 }, null, HistGray, 1, dimensions, ranges);
+
+                Cv2.Normalize(HistR, HistR, 0, 256, NormTypes.MinMax);
+                Cv2.Normalize(HistG, HistG, 0, 256, NormTypes.MinMax);
+                Cv2.Normalize(HistB, HistB, 0, 256, NormTypes.MinMax);
+                Cv2.Normalize(HistB, HistGray, 0, 256, NormTypes.MinMax);
+
+                this.histChart.Series.Clear();
+                this.histChart.ChartAreas[0].AxisX.Minimum = 0;
+                this.histChart.ChartAreas[0].AxisY.Minimum = 0;
+                this.histChart.Legends[0].Enabled = true;
+                RenderHistogram(HistR, "Красный", Color.Red);
+                RenderHistogram(HistB, "Синий", Color.Blue);
+                RenderHistogram(HistG, "Зеленый", Color.Green);
+                RenderHistogram(HistGray, "Яркость", Color.Black);
             }
-            this.HistogramBox.Image = BitmapConverter.ToBitmap(render);
+        }
+        private void CalcHistButton_Click(object sender, EventArgs e)
+        {
+            CalcImageHistogram();            
+        }
+
+        private void GrayButton_Click(object sender, EventArgs e)
+        {
+            Bitmap copy = new Bitmap(this.imageBox.Image);
+            Mat imageMat = BitmapConverter.ToMat(copy);
+            Cv2.CvtColor(imageMat, imageMat, ColorConversionCodes.BGR2GRAY);
+            this.imageBox.Image = BitmapConverter.ToBitmap(imageMat);
         }
     }
 }
